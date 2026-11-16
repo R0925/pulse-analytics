@@ -2,15 +2,15 @@ import type { Metadata } from "next";
 import { getDirection, routing } from '@/i18n/routing';
 import LocaleLayout from '@/providers/locale-provider';
 import { ThemeProvider } from "@/providers/theme-provider"
-import { Geist, Geist_Mono, Vazirmatn } from "next/font/google";
+import { Inter, Geist_Mono, Vazirmatn } from "next/font/google";
 import "../globals.css";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
 });
 
@@ -40,7 +40,7 @@ export default async function RootLayout({
       suppressHydrationWarning
       lang={locale}
       dir={getDirection(locale)}
-      className={`${geistSans.variable} ${geistMono.variable} ${vazirmatn.variable} h-full antialiased`}
+      className={`${inter.variable} ${geistMono.variable} ${vazirmatn.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <LocaleLayout locale={locale}>
